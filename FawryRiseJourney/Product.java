@@ -1,6 +1,6 @@
 package FawryRiseJourney;
 
-public class Product implements Shippable { //دي ال اتريبيوتس
+public class Product implements Shippable { 
     private String name;
     private double price;
     private int quantity;
@@ -11,7 +11,7 @@ public class Product implements Shippable { //دي ال اتريبيوتس
 
     public Product (String name, double price,int quantity,
                    boolean expirable,boolean expired, boolean requiresShipping,
-                   double weight){ // دي ال كنسركتورز
+                   double weight){ 
         this.name=name;
         this.price=price;
         this.quantity=quantity;
@@ -46,7 +46,4 @@ public class Product implements Shippable { //دي ال اتريبيوتس
     public void decreaseQuantity(int amount) {
         this.quantity -= amount;
     }
-
-
-
 }
