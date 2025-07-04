@@ -2,32 +2,26 @@ package FawryRiseJourney;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        // 1. Define products
+        // Define products
         Product cheese = new Product("Cheese 400g", 100, 5, true, false, true, 0.2);
         Product biscuits = new Product("Biscuits 700g", 150, 2, true, false, true, 0.7);
         Product scratchCard = new Product("Scratch Card", 50, 10, false, false, false, 0);
-
-        // 2. Define customer and cart
+        // Define customer and cart
         Customer customer = new Customer("Syada", 500);
         Cart cart = new Cart();
-
-        // 3. Add products to cart
+        //Add products to cart
         cart.add(cheese, 2);
         cart.add(biscuits, 1);
         cart.add(scratchCard, 1);
-
-        // 4. Check if cart is empty
+        // Check if cart is empty
         if (cart.isEmpty()) {
             System.out.println("Cart is empty!");
             return;
         }
-
         double subtotal = 0;
         double shipping = 30;
         double totalWeight = 0;
         List<Shippable> itemsToShip = new ArrayList<>();
-
-        // 5. Validate and calculate
         for (CartItem item : cart.getItems()) {
             Product p = item.product;
 
@@ -42,7 +36,6 @@ public class Main {
             }
 
             subtotal += item.getTotalPrice();
-
             if (p.requiresShipping()) {
                 itemsToShip.add(p);
                 totalWeight += item.getTotalweight();
@@ -58,7 +51,7 @@ public class Main {
             return;
         }
 
-        // 6. Shipment notice
+        // Shipment notice
         System.out.println("** Shipment notice **");
         for (CartItem item : cart.getItems()) {
             if (item.product.requiresShipping()) {
@@ -67,7 +60,7 @@ public class Main {
         }
         System.out.printf("Total package weight is "+ totalWeight + " \n");
 
-        // 7. Checkout receipt
+        // Checkout receipt
         System.out.println("** Checkout receipt **");
         for (CartItem item : cart.getItems()) {
             System.out.printf("%dx %s %.0f\n", item.quantity, item.product.getName(), item.getTotalPrice());
@@ -76,7 +69,6 @@ public class Main {
         System.out.println("Subtotal " + subtotal);
         System.out.println("Shipping " + shipping);
         System.out.println("Amount " + total);
-
         customer.pay(total);
         System.out.println("Customer balance after payment: " + customer.getBalance());
     }
